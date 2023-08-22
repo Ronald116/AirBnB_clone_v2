@@ -132,8 +132,7 @@ class HBNBCommand(cmd.Cmd):
                         new_instance.__dict__.update({
                             att[0]: att[1]
                         })
-                    elif (att[1].replace('.', '', 1).isdigit() or
-                          att[1].replace('.', '', 1).replace('-', '', 1)):
+                    elif (att[1].replace('.', '', 1).isdigit() or att[1].replace('.', '', 1).replace('-', '', 1)):
                         if att[1].isdigit():
                             new_instance.__dict__.update({
                                 att[0]: int(att[1])
@@ -146,7 +145,7 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
         print(new_instance.id)
         # storage.save()
-
+        
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
