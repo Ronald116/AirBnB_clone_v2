@@ -8,6 +8,7 @@ Routes:
         /python/<text>: display “Python ”, followed by the value of the text
         variable (replace underscore _ symbols with a space )
             The default value of text is “is cool”
+        /number/<n>: display "n is a number" only if n is an integer
 """
 
 from flask import Flask
@@ -39,6 +40,12 @@ def c(text):
 def python(text='is cool'):
     """displays 'python' followed by the value of the text"""
     return 'Python {}'.format(text.replace('_', ' '))
+
+
+@app.route('/number/<int:n>', strict_slashes=False)
+def number(n):
+    """displays 'n is a number' only if n is an integer"""
+    return '{} is a number'.format(n)
 
 
 if __name__ == "__main__":
