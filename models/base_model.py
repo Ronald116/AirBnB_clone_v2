@@ -15,6 +15,13 @@ else:
     Base = object
 
 
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        return super(DateTimeEncoder, self).default(obj)
+
+
 class BaseModel:
     """A base class for all hbnb models"""
 
@@ -72,3 +79,5 @@ class BaseModel:
     def delete(self):
         """Delete the current instance from the storage"""
         models.storage.delete(self)
+
+json.dump(json_objects, f, cls=DateTimeEncoder)
