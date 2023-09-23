@@ -7,6 +7,8 @@ from sqlalchemy import Column, String, Integer, DateTime
 from os import getenv
 import models
 
+time_fmt = "%Y-%m-%dT%H:%M:%S.%f"
+
 if getenv('HBNB_TYPE_STORAGE') == 'db':
     Base = declarative_base()
 else:
@@ -31,11 +33,9 @@ class BaseModel:
                 continue
             setattr(self, key, value)
             if type(self.created_at) is str:
-                self.created_at = datetime.strptime(self.created_at,
-                                                    '%Y-%m-%dT%H:%M:%S.%f')
+                self.created_at = datetime.strptime(self.created_at, time_fmt)
             if type(self.updated_at) is str:
-                self.updated_at = datetime.strptime(self.updated_at,
-                                                    '%Y-%m-%dT%H:%M:%S.%f')
+                self.updated_at = datetime.strptime(self.updated_at, time_fmt)
 
     def __str__(self):
         """Returns a string representation of the instance"""
