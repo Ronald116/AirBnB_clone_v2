@@ -23,8 +23,8 @@ class State(BaseModel, Base):
         """initialize state"""
         super().__init__(*args, **kwargs)
         #2
-        if not hasattr(self, 'created_at'):
-            self.created_at = datetime.datetime.now()
+        if 'created_at' not in kwargs:
+            self.creatd_at = datetime.datetime.now()
 
     if getenv('HBNB_TYPE_STORAGE') != 'db':
         @property
