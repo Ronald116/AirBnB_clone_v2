@@ -5,6 +5,7 @@ import models
 from os import getenv
 from sqlalchemy import String, Column, ForeignKey
 from sqlalchemy.orm import relationship
+import datetime  #1
 
 
 class State(BaseModel, Base):
@@ -21,6 +22,9 @@ class State(BaseModel, Base):
     def __init__(self, *args, **kwargs):
         """initialize state"""
         super().__init__(*args, **kwargs)
+        #2
+        if not hasattr(self, 'created_at'):
+            self.created_at = datetime.datetime.now()
 
     if getenv('HBNB_TYPE_STORAGE') != 'db':
         @property
