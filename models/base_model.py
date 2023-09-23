@@ -6,7 +6,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, DateTime
 from os import getenv
 import models
-import json
 
 time_fmt = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -14,13 +13,6 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
     Base = declarative_base()
 else:
     Base = object
-
-
-class DateTimeEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, datetime):
-            return obj.isoformat()
-        return super(DateTimeEncoder, self).default(obj)
 
 
 class BaseModel:
@@ -80,5 +72,3 @@ class BaseModel:
     def delete(self):
         """Delete the current instance from the storage"""
         models.storage.delete(self)
-
-json.dump(json_objects, f, cls=DateTimeEncoder)
