@@ -6,6 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer, DateTime
 from os import getenv
 import models
+import json
 
 time_fmt = "%Y-%m-%dT%H:%M:%S.%f"
 
