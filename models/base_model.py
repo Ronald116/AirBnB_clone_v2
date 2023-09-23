@@ -34,10 +34,10 @@ class BaseModel:
                 if key == '__class__':
                     continue
                 setattr(self, key, value)
-                if type(self.created_at) == str:
+                if type(self.created_at) is str:
                     self.created_at = datetime.strptime(self.created_at,
                                                         '%Y-%m-%dT%H:%M:%S.%f')
-                if type(self.updated_at) == str:
+                if type(self.updated_at) is str:
                     self.updated_at = datetime.strptime(self.updated_at,
                                                         '%Y-%m-%dT%H:%M:%S.%f')
 
